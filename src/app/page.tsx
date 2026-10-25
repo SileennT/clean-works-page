@@ -1,26 +1,37 @@
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { ServiceCard } from "@/components/service-card";
+import { ContactForm } from "@/components/contact-form";
 import { businessPhone, faqs, galleryItems, services, trustPoints } from "@/data/site";
 
 export default function HomePage() {
   return (
-    <>
-      <SiteHeader />
-      <main>
+    <main>
         <section className="hero section-wrap" id="start">
           <div className="hero-copy">
             <p className="eyebrow">CLEANWORKS · MALOWANIE I MYCIE DACHÓW</p>
             <h1>Malowanie dachów</h1>
             <p className="hero-slogan">Odśwież swój dach — zyskaj na lata!</p>
             <p className="hero-lede">
-              Przywracamy dachom świeży wygląd. Zaczynamy od dokładnego
-              czyszczenia i przygotowania powierzchni.
+              Przywracamy dachom świeży wygląd. Zaczynamy od dokładnego czyszczenia dachu.
             </p>
             <ul className="hero-benefits">
-              <li><span aria-hidden="true">✓</span> Profesjonalne malowanie dachów</li>
-              <li><span aria-hidden="true">✦</span> Czyszczenie i przygotowanie powierzchni</li>
-              <li><span aria-hidden="true">⌂</span> Estetyczny wygląd Twojego domu</li>
+              <li>
+                <span aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 5h12a3 3 0 0 1 3 3v1H9a3 3 0 0 1-3-3V5Zm12 4v3a3 3 0 0 1-3 3h-1v5m-2 0h4" /></svg>
+                </span>
+                Profesjonalne malowanie dachów
+              </li>
+              <li>
+                <span aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8 4c0 2-3 5-3 8a3 3 0 0 0 6 0c0-3-3-6-3-8Zm9 2c0 1.5-2 3.5-2 5.5a2 2 0 0 0 4 0C19 9.5 17 7.5 17 6ZM5 19c3 1.5 11 1.5 14 0" /></svg>
+                </span>
+                Dokładne czyszczenie dachów
+              </li>
+              <li>
+                <span aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="m2 11 10-8 10 8M5 10v10h14V10M9 20v-6h6v6M9 8h.01M15 8h.01" /></svg>
+                </span>
+                Estetyczny wygląd Twojego domu
+              </li>
             </ul>
             <a className="hero-phone" href={businessPhone.href}>
               <span className="phone-icon" aria-hidden="true">☎</span>
@@ -30,22 +41,13 @@ export default function HomePage() {
               </span>
             </a>
           </div>
-          <div className="hero-art" role="img" aria-label="Porównanie dachu przed i po malowaniu">
-            <div className="roof-sky" />
-            <div className="roof-surface roof-surface-painted" />
-            <div className="roof-comparison">
-              <div className="comparison-side comparison-before"><span>PRZED</span></div>
-              <div className="comparison-side comparison-after"><span>PO</span></div>
+          <div className="hero-form-panel">
+            <div className="hero-form-heading">
+              <h2>Bezpłatna wycena</h2>
             </div>
-            <p className="art-caption">Twój dach w dobrych rękach</p>
-          </div>
-          <div className="hero-proof" aria-label="Najważniejsze informacje">
-            <span>01 / Dokładne przygotowanie</span>
-            <span>02 / Dobór metody do pokrycia</span>
-            <span>03 / Bezpośredni kontakt</span>
+            <ContactForm />
           </div>
         </section>
-
         <section className="section section-services" id="uslugi">
           <div className="section-wrap">
             <div className="section-heading">
@@ -53,14 +55,10 @@ export default function HomePage() {
                 <p className="eyebrow">JAK MOŻEMY POMÓC?</p>
                 <h2>Usługi, które robią różnicę.</h2>
               </div>
-              <p className="section-intro">
-                Wybierz usługę lub opowiedz nam o swoim projekcie. Zakres dopasujemy
-                do rodzaju i stanu powierzchni.
-              </p>
             </div>
             <div className="service-grid">
-              {services.map((service, index) => (
-                <ServiceCard key={service.title} service={service} index={index + 1} />
+              {services.map((service) => (
+                <ServiceCard key={service.title} service={service} />
               ))}
             </div>
           </div>
@@ -191,25 +189,21 @@ export default function HomePage() {
           <div className="section-wrap contact-grid">
             <div>
               <p className="eyebrow">POROZMAWIAJMY</p>
-              <h2>Dobry efekt zaczyna się od rozmowy.</h2>
+              <h2>Opowiedz nam o swoim dachu.</h2>
               <p className="section-intro">
-                Napisz lub zadzwoń. Opowiedz nam, czego potrzebujesz, a wrócimy
-                z kolejnym krokiem.
+                Zadzwoń lub napisz — chętnie odpowiemy na pytania dotyczące
+                malowania i mycia dachu.
               </p>
               <a className="button button-primary" href={businessPhone.href}>
                 Zadzwoń: {businessPhone.display} <span aria-hidden="true">↗</span>
               </a>
             </div>
-            <div className="contact-details">
-              <div><span>NAPISZ DO NAS</span><a href="mailto:kontakt@twojafirma.pl">kontakt@twojafirma.pl</a></div>
+            <div className="contact-details contact-info">
+              <div><span>ADRES E-MAIL</span><a href="mailto:cleanworks.goraj@gmail.com">cleanworks.goraj@gmail.com</a></div>
               <div><span>OBSZAR DZIAŁANIA</span><p>[Miasto / region]</p></div>
-              <div><span>GODZINY KONTAKTU</span><p>[Dni i godziny do uzupełnienia]</p></div>
-              <p className="contact-hint">Uzupełnij dane kontaktowe przed publikacją strony.</p>
             </div>
           </div>
         </section>
-      </main>
-      <SiteFooter />
-    </>
+    </main>
   );
 }
