@@ -75,7 +75,7 @@ src/
     uslugi/           # lista usług i podstrony poszczególnych usług
     realizacje/       # galeria prac
     blog/             # poradnik i podstrony artykułów
-    o-nas/            # informacje o firmie
+    o-firmie/         # informacje o firmie
     kontakt/          # dane kontaktowe i formularz
     api/contact/      # serwerowa wysyłka formularza przez Resend
   components/
@@ -95,7 +95,7 @@ src/
 - `/uslugi/malowanie-dachow`, `/uslugi/mycie-dachow`, `/uslugi/czyszczenie-elewacji`, `/uslugi/malowanie-elewacji` — opisy usług.
 - `/realizacje` — galeria przykładowych realizacji.
 - `/blog` oraz `/blog/[slug]` — poradnik i artykuły.
-- `/o-nas` — informacje o firmie.
+- `/o-firmie` — informacje o firmie.
 - `/kontakt` — dane kontaktowe i formularz.
 
 ## Co uzupełnić dla klienta
