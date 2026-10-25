@@ -1,6 +1,9 @@
+import Image from "next/image";
+import Link from "next/link";
 import { ServiceCard } from "@/components/service-card";
 import { ContactForm } from "@/components/contact-form";
-import { businessPhone, faqs, galleryItems, services, trustPoints } from "@/data/site";
+import { ServiceAreaSection } from "@/components/service-area-section";
+import { businessPhone, faqs, galleryItems, services } from "@/data/site";
 
 export default function HomePage() {
   return (
@@ -52,7 +55,6 @@ export default function HomePage() {
           <div className="section-wrap">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">JAK MOŻEMY POMÓC?</p>
                 <h2>Usługi, które robią różnicę.</h2>
               </div>
             </div>
@@ -64,53 +66,21 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section section-about" id="o-nas">
-          <div className="section-wrap about-grid">
-            <div className="about-visual">
-              <div className="about-stamp">
-                <span>EFEKT</span>
-                <strong>zaczyna się<br />od dobrego planu</strong>
-              </div>
-              <div className="about-lines" aria-hidden="true" />
-              <p className="visual-caption">Wstaw zdjęcie zespołu lub sprzętu</p>
-            </div>
-            <div className="about-copy">
-              <p className="eyebrow">POZNAJ CLEANWORKS</p>
-              <h2>Dbamy o powierzchnie. I o dobrą współpracę.</h2>
-              <p>
-                Każdy budynek i każda powierzchnia są inne. Dlatego przed rozpoczęciem
-                prac poznajemy potrzeby klienta, omawiamy zakres i dobieramy
-                odpowiednie rozwiązanie.
-              </p>
-              <ul className="check-list">
-                {trustPoints.map((point) => (
-                  <li key={point.title}>
-                    <span className="check-mark" aria-hidden="true">✓</span>
-                    <span><strong>{point.title}</strong>{point.description}</span>
-                  </li>
-                ))}
-              </ul>
-              <a className="text-link" href="#kontakt">
-                Porozmawiajmy o Twoim projekcie <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
         <section className="section section-process">
           <div className="section-wrap">
             <div className="section-heading section-heading-centered">
               <div>
-                <p className="eyebrow">PROSTY PROCES</p>
-                <h2>Od pierwszej rozmowy do gotowego efektu.</h2>
+                <p className="eyebrow">JAK TO DZIAŁA?</p>
+                <h2>Prosta współpraca, krok po kroku.</h2>
+                <p className="process-intro">Nie musisz znać się na dachach — przeprowadzimy Cię przez cały proces.</p>
               </div>
             </div>
-            <div className="process-grid">
+            <div className="process-grid" aria-label="Etapy współpracy z CleanWorks">
               {[
-                ["01", "Daj nam znać", "Zadzwoń lub napisz, czego potrzebujesz."],
-                ["02", "Ustalamy szczegóły", "Poznajemy powierzchnię i zakres prac."],
-                ["03", "Otrzymujesz wycenę", "Przedstawiamy plan i koszt realizacji."],
-                ["04", "Działamy", "Po akceptacji ustalamy dogodny termin."],
+                ["01", "Kontaktujesz się", "Zadzwoń lub napisz. Powiedz, co chcesz odświeżyć — resztę ustalimy wspólnie."],
+                ["02", "Poznajemy potrzeby", "Zapytamy o rodzaj i stan powierzchni oraz oczekiwany efekt."],
+                ["03", "Omawiamy wycenę", "Przedstawimy proponowany zakres prac i koszt przed podjęciem decyzji."],
+                ["04", "Ustalamy termin", "Jeśli zaakceptujesz warunki, wspólnie wybierzemy dogodny termin realizacji."],
               ].map(([number, title, description]) => (
                 <article className="process-step" key={number}>
                   <span className="step-number">{number}</span>
@@ -118,6 +88,55 @@ export default function HomePage() {
                   <p>{description}</p>
                 </article>
               ))}
+            </div>
+            <div className="process-contact">
+              <p>Masz pytanie lub chcesz porozmawiać o swoim dachu?</p>
+              <a href={businessPhone.href}>Zadzwoń: {businessPhone.display} <span aria-hidden="true">↗</span></a>
+              <span className="process-contact-divider" aria-hidden="true">lub</span>
+              <a href="/kontakt">Napisz do nas <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section home-about-section">
+          <div className="section-wrap home-contact-grid">
+            <div className="home-contact-copy">
+              <p className="eyebrow">POROZMAWIAJMY</p>
+              <h2>Opowiedz nam o swoim dachu.</h2>
+              <p className="section-intro">
+                Nie wiesz, od czego zacząć? Zadzwoń lub napisz — porozmawiamy
+                o potrzebach Twojego domu i podpowiemy kolejny krok.
+              </p>
+              <div className="home-contact-details">
+                <div className="home-contact-detail">
+                  <span className="home-contact-icon" aria-hidden="true">☎</span>
+                  <div>
+                    <span>Telefon</span>
+                    <a href={businessPhone.href}>{businessPhone.display}</a>
+                  </div>
+                </div>
+                <div className="home-contact-detail">
+                  <span className="home-contact-icon" aria-hidden="true">⌖</span>
+                  <div>
+                    <span>Obszar działania</span>
+                    <strong>Łódź i okolice</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="home-contact-callout">
+              <p className="eyebrow">CLEANWORKS</p>
+              <strong>50+</strong>
+              <h3>realizacji dachów i elewacji</h3>
+              <p>Chcesz odświeżyć swoją nieruchomość? Zapytaj o bezpłatną wycenę — bez zobowiązań.</p>
+              <div className="home-contact-actions">
+                <Link className="button button-primary" href="/kontakt">
+                  Napisz do nas <span aria-hidden="true">↗</span>
+                </Link>
+                <Link className="home-contact-projects" href="/realizacje">
+                  Zobacz realizacje <span aria-hidden="true">↗</span>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -130,19 +149,25 @@ export default function HomePage() {
                 <h2>Najlepiej widać to na przykładach.</h2>
               </div>
               <p className="section-intro">
-                Dodaj zdjęcia przed i po, aby pokazać prawdziwy zakres oraz efekty
-                pracy Twojego zespołu.
+                Zobacz efekty mycia i malowania dachów oraz elewacji na zdjęciach
+                przed i po.
               </p>
             </div>
             <div className="gallery-grid">
               {galleryItems.map((item, index) => (
                 <article className={`gallery-card gallery-card-${index + 1}`} key={item.title}>
-                  <div className="gallery-placeholder">
-                    <span>Dodaj zdjęcie</span>
+                  <div className="gallery-photos">
+                    {item.photos.map((photo) => (
+                      <figure className="gallery-photo" key={photo.src}>
+                        <div className="gallery-photo-image">
+                          <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw" />
+                          <figcaption>{photo.label}</figcaption>
+                        </div>
+                      </figure>
+                    ))}
                   </div>
                   <div className="gallery-caption">
-                    <div><h3>{item.title}</h3><p>{item.location}</p></div>
-                    <span className="gallery-arrow" aria-hidden="true">↗</span>
+                    <div><h3>{item.title}</h3><p>{item.description}</p></div>
                   </div>
                 </article>
               ))}
@@ -172,18 +197,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section section-area" id="obszar">
-          <div className="section-wrap area-card">
-            <div>
-              <p className="eyebrow">JESTEŚMY BLISKO</p>
-              <h2>Sprawdź, czy działamy w Twojej okolicy.</h2>
-              <p>Obsługiwany obszar: [miasto, region i pobliskie miejscowości].</p>
-            </div>
-            <a className="button button-light" href="#kontakt">
-              Zapytaj o dojazd <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </section>
+        <ServiceAreaSection />
 
         <section className="section section-contact" id="kontakt">
           <div className="section-wrap contact-grid">
@@ -198,9 +212,34 @@ export default function HomePage() {
                 Zadzwoń: {businessPhone.display} <span aria-hidden="true">↗</span>
               </a>
             </div>
-            <div className="contact-details contact-info">
-              <div><span>ADRES E-MAIL</span><a href="mailto:cleanworks.goraj@gmail.com">cleanworks.goraj@gmail.com</a></div>
-              <div><span>OBSZAR DZIAŁANIA</span><p>[Miasto / region]</p></div>
+            <div className="home-final-contact">
+              <div className="home-final-contact-row">
+                <span className="home-final-contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg>
+                </span>
+                <div>
+                  <span>ADRES E-MAIL</span>
+                  <a href="mailto:cleanworks.goraj@gmail.com">cleanworks.goraj@gmail.com</a>
+                </div>
+              </div>
+              <div className="home-final-contact-row">
+                <span className="home-final-contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+                </span>
+                <div>
+                  <span>GODZINY KONTAKTU</span>
+                  <p>Poniedziałek–piątek, 7:00–18:00</p>
+                </div>
+              </div>
+              <div className="home-final-contact-row">
+                <span className="home-final-contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                </span>
+                <div>
+                  <span>OBSZAR DZIAŁANIA</span>
+                  <p>Łódź i okolice</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
