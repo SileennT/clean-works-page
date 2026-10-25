@@ -70,15 +70,33 @@ Jeżeli port 3000 jest już zajęty, zatrzymaj poprzedni serwer developerski skr
 src/
   app/
     globals.css       # style, responsywność i kolory
-    layout.tsx        # język strony i metadane SEO
-    page.tsx          # składanie sekcji strony głównej
+    layout.tsx        # wspólny nagłówek, stopka i metadane
+    page.tsx          # strona główna
+    uslugi/           # lista usług i podstrony poszczególnych usług
+    realizacje/       # galeria prac
+    blog/             # poradnik i podstrony artykułów
+    o-nas/            # informacje o firmie
+    kontakt/          # dane kontaktowe i formularz
+    api/contact/      # serwerowa wysyłka formularza przez Resend
   components/
     site-header.tsx   # nagłówek i nawigacja
     site-footer.tsx   # stopka
     service-card.tsx  # powtarzalna karta usługi
+    page-intro.tsx    # wspólny nagłówek podstron
+    contact-form.tsx  # formularz zapytań
   data/
     site.ts           # przykładowe usługi, FAQ i treści
 ```
+
+## Podstrony
+
+- `/` — strona główna z formularzem wyceny w sekcji otwierającej.
+- `/uslugi` — lista dostępnych usług.
+- `/uslugi/malowanie-dachow`, `/uslugi/mycie-dachow`, `/uslugi/czyszczenie-elewacji`, `/uslugi/malowanie-elewacji` — opisy usług.
+- `/realizacje` — galeria przykładowych realizacji.
+- `/blog` oraz `/blog/[slug]` — poradnik i artykuły.
+- `/o-nas` — informacje o firmie.
+- `/kontakt` — dane kontaktowe i formularz.
 
 ## Co uzupełnić dla klienta
 
@@ -87,7 +105,29 @@ src/
 - Zastąp ilustracje i pola „Dodaj zdjęcie” prawdziwymi, zaakceptowanymi zdjęciami klienta. Najlepiej przygotować własne fotografie „przed i po”.
 - Zaktualizuj tytuł i opis SEO w `src/app/layout.tsx`; dodaj docelową politykę prywatności przed publikacją.
 - Zweryfikuj wszystkie obietnice marketingowe, dostępność usług i opinie — szablon nie zakłada niepotwierdzonych gwarancji ani referencji.
+- Formularz wysyła zgłoszenia przez Resend na `cleanworks.goraj@gmail.com`. Skonfiguruj Resend przed użyciem i publikacją, zgodnie z instrukcją poniżej.
 
 ## Przykładowe elementy strony
 
-Hero z wezwaniem do kontaktu, kafle usług, sekcja o firmie, czteroetapowy proces, galeria realizacji, rozwijane FAQ, obszar działania i wyraźny kontakt telefoniczny. To dobry zestaw dla strony pozyskującej zapytania; formularz można dodać później po wyborze sposobu obsługi zgłoszeń.
+Hero z wezwaniem do kontaktu, kafle usług, sekcja o firmie, czteroetapowy proces, galeria realizacji, rozwijane FAQ, obszar działania, formularz kontaktowy i wyraźny kontakt telefoniczny.
+
+## Konfiguracja formularza kontaktowego
+
+Wysyłka odbywa się przez API usługi [Resend](https://resend.com/), bez konfiguracji SMTP. Potrzebujesz konta Resend i klucza API. Aby wysyłać wiadomości na `cleanworks.goraj@gmail.com`, zweryfikuj własną domenę nadawcy w Resend i użyj adresu z tej domeny jako `RESEND_FROM`. Sam adres odbiorcy może pozostać adresem Gmail.
+
+1. Skopiuj przykładowy plik ustawień:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+2. W panelu Resend utwórz klucz API i wstaw go jako `RESEND_API_KEY` w `.env.local`.
+3. Po zweryfikowaniu domeny ustaw `RESEND_FROM`, np. `CleanWorks <formularz@twojadomena.pl>`. Zastąp `twojadomena.pl` własną domeną zweryfikowaną w Resend.
+4. `CONTACT_TO` określa adres, na który mają przychodzić wiadomości. Domyślnie jest to `cleanworks.goraj@gmail.com`.
+5. Uruchom ponownie serwer developerski po zmianie `.env.local`:
+
+```powershell
+npm run dev
+```
+
+`.env.local` zawiera sekret i nie wolno go dodawać do repozytorium. W hostingu produkcyjnym ustaw `RESEND_API_KEY`, `RESEND_FROM` i `CONTACT_TO` w panelu zmiennych środowiskowych hostingu, a nie w kodzie. Bez prawidłowych ustawień formularz pokaże informację o braku konfiguracji, a wysyłka nie zostanie potwierdzona.

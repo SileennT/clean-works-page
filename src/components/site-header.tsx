@@ -1,24 +1,84 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { businessPhone } from "@/data/site";
+import Link from "next/link";
 
 export function SiteHeader() {
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handlePointerDown(event: PointerEvent) {
+      if (event.target instanceof Node && !servicesRef.current?.contains(event.target)) {
+        setServicesOpen(false);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setServicesOpen(false);
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  function closeMenu() {
+    setServicesOpen(false);
+  }
+
   return (
     <header className="site-header">
       <div className="header-inner">
-        <a className="brand" href="#start" aria-label="CleanWorks — strona główna">
+        <Link className="brand" href="/" aria-label="CleanWorks — strona główna">
           <svg className="brand-mark" viewBox="0 0 48 36" aria-hidden="true">
             <path d="M2 25 14 13l8 7L34 7l12 18h-9l-5-8-10 9-8-7-7 7H2Z" />
             <path d="M8 29h32M15 25v-5m19 5v-6" fill="none" stroke="currentColor" strokeWidth="1.7" />
           </svg>
           <span>CLEAN <span>WORKS</span></span>
-        </a>
+        </Link>
         <nav className="main-nav" aria-label="Nawigacja główna">
-          <a href="#uslugi">Usługi</a>
-          <a href="#o-nas">O nas</a>
-          <a href="#realizacje">Realizacje</a>
-          <a href="#faq">FAQ</a>
+          <Link className="nav-home-link" href="/" onClick={closeMenu}>Strona główna</Link>
+          <div className="nav-dropdown" ref={servicesRef}>
+            <button
+              className="nav-dropdown-trigger"
+              type="button"
+              aria-expanded={servicesOpen}
+              aria-controls="services-menu"
+              onClick={() => setServicesOpen((open) => !open)}
+            >
+              Usługi <span className="nav-chevron" aria-hidden="true" />
+            </button>
+            <div
+              className={`nav-dropdown-menu${servicesOpen ? " is-open" : ""}`}
+              id="services-menu"
+              aria-hidden={!servicesOpen}
+              inert={!servicesOpen}
+            >
+              <div className="nav-dropdown-menu-inner">
+                <Link href="/uslugi" onClick={closeMenu}>Wszystkie usługi</Link>
+                <Link href="/uslugi/malowanie-dachow" onClick={closeMenu}>Malowanie dachów</Link>
+                <Link href="/uslugi/mycie-dachow" onClick={closeMenu}>Mycie dachów</Link>
+                <Link href="/uslugi/czyszczenie-elewacji" onClick={closeMenu}>Czyszczenie elewacji</Link>
+                <Link href="/uslugi/malowanie-elewacji" onClick={closeMenu}>Malowanie elewacji</Link>
+              </div>
+            </div>
+          </div>
+          <Link href="/realizacje" onClick={closeMenu}>Realizacje</Link>
+          <Link href="/blog" onClick={closeMenu}>Blog</Link>
+          <Link href="/o-nas" onClick={closeMenu}>O nas</Link>
+          <Link href="/kontakt" onClick={closeMenu}>Kontakt</Link>
         </nav>
-        <a className="header-contact" href={businessPhone.href}>
-          Zadzwoń <span>{businessPhone.display}</span>
+        <a className="header-contact" href={businessPhone.href} aria-label={`Zadzwoń: ${businessPhone.display}`}>
+          <svg className="header-phone-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 3h3l1.5 4-2 1.5a15 15 0 0 0 6 6l1.5-2 4 1.5v3c0 1.1-.9 2-2 2C10.7 19 5 13.3 5 6c0-1.7.7-3 2-3Z" />
+          </svg>
+          <span>{businessPhone.display}</span>
         </a>
       </div>
     </header>

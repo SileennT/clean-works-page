@@ -1,8 +1,16 @@
 export type Service = {
+  slug: string;
   title: string;
   description: string;
-  icon: string;
+  icon: ServiceIconName;
+  details: string[];
 };
+
+export type ServiceIconName =
+  | "paint-roof"
+  | "wash-roof"
+  | "wash-facade"
+  | "paint-facade";
 
 export const businessPhone = {
   display: "884 045 079",
@@ -11,24 +19,84 @@ export const businessPhone = {
 
 export const services: Service[] = [
   {
+    slug: "malowanie-dachow",
     title: "Malowanie dachów",
     description: "Odświeżenie koloru i estetyki dachu po odpowiednim przygotowaniu pokrycia.",
-    icon: "⌂",
+    icon: "paint-roof",
+    details: [
+      "Ocena stanu i rodzaju pokrycia przed rozpoczęciem prac.",
+      "Dokładne oczyszczenie dachu oraz przygotowanie podłoża.",
+      "Dobór zakresu prac i sposobu odświeżenia do konkretnego dachu.",
+    ],
   },
   {
+    slug: "mycie-dachow",
     title: "Mycie dachów",
     description: "Usuwanie zabrudzeń z dachówek i innych pokryć metodą dobraną do powierzchni.",
-    icon: "✦",
+    icon: "wash-roof",
+    details: [
+      "Oględziny pokrycia i dopasowanie metody czyszczenia.",
+      "Usuwanie typowych zabrudzeń, osadów i nalotów.",
+      "Omówienie dalszej pielęgnacji dachu po wykonanej usłudze.",
+    ],
   },
   {
-    title: "Przygotowanie powierzchni",
-    description: "Czyszczenie i przygotowanie dachu przed dalszymi pracami renowacyjnymi.",
-    icon: "▤",
-  },
-  {
+    slug: "czyszczenie-elewacji",
     title: "Czyszczenie elewacji",
-    description: "Odświeżenie ścian zewnętrznych z uwzględnieniem materiału i stanu elewacji.",
-    icon: "▦",
+    description: "Usuwanie zabrudzeń i nalotów ze ścian zewnętrznych metodą dopasowaną do elewacji.",
+    icon: "wash-facade",
+    details: [
+      "Rozpoznanie rodzaju elewacji i jej stanu.",
+      "Dobór odpowiedniej metody czyszczenia do powierzchni.",
+      "Ustalenie zakresu prac i wyceny przed realizacją.",
+    ],
+  },
+  {
+    slug: "malowanie-elewacji",
+    title: "Malowanie elewacji",
+    description: "Odświeżenie wyglądu elewacji i dobór zakresu malowania do rodzaju podłoża.",
+    icon: "paint-facade",
+    details: [
+      "Ocena rodzaju i stanu powierzchni przed rozpoczęciem prac.",
+      "Ustalenie przygotowania podłoża i zakresu malowania.",
+      "Dobór rozwiązania oraz wycena dopasowana do budynku.",
+    ],
+  },
+];
+
+export const articles = [
+  {
+    slug: "kiedy-warto-odswiezyc-dach",
+    title: "Kiedy warto odświeżyć dach?",
+    excerpt: "Oznaki zużycia, przebarwienia i inne sygnały, które warto sprawdzić przed planowaniem prac.",
+    date: "Poradnik",
+    paragraphs: [
+      "Dach jest stale narażony na działanie pogody, dlatego z czasem może zmienić kolor i pokryć się zabrudzeniami. Regularne oględziny pomagają zauważyć zmiany, zanim zaplanujesz kolejne prace.",
+      "Zwróć uwagę na przebarwienia, naloty i stan samej powierzchni. Przed wyborem usługi warto ocenić rodzaj pokrycia oraz jego kondycję, aby dobrać odpowiedni zakres działań.",
+      "Jeśli nie masz pewności, od czego zacząć, prześlij opis i zdjęcia dachu. Na tej podstawie ustalimy, jakie informacje będą potrzebne do przygotowania wyceny.",
+    ],
+  },
+  {
+    slug: "jak-przygotowac-dach-do-malowania",
+    title: "Jak przygotowuje się dach do malowania?",
+    excerpt: "Dlaczego ocena i oczyszczenie powierzchni są ważne przed renowacją pokrycia.",
+    date: "Poradnik",
+    paragraphs: [
+      "Przed malowaniem należy ocenić rodzaj pokrycia i jego stan. Dokładne oczyszczenie dachu jest ważnym etapem planowania, a sposób pracy powinien uwzględniać konkretne podłoże.",
+      "Zakres przygotowania może obejmować czyszczenie oraz sprawdzenie powierzchni. Szczegóły ustala się po zapoznaniu z dachem, jego dostępnością i oczekiwanym efektem.",
+      "Każdy dach jest inny. Przed rozpoczęciem prac warto uzgodnić z wykonawcą zakres usługi, wycenę i możliwy termin.",
+    ],
+  },
+  {
+    slug: "o-co-zapytac-przed-wycena",
+    title: "O co zapytać przed wyceną usługi?",
+    excerpt: "Krótka lista informacji, które ułatwią rozmowę o dachu i planowanych pracach.",
+    date: "Wskazówki",
+    paragraphs: [
+      "Przygotuj przybliżony rozmiar dachu, informację o rodzaju pokrycia oraz miejscowość, w której znajduje się budynek. Zdjęcia mogą pomóc w pierwszej rozmowie.",
+      "Opowiedz, jaki efekt chcesz uzyskać i czy planujesz samo czyszczenie, czy również malowanie. Warto też wspomnieć o widocznych uszkodzeniach lub utrudnionym dostępie.",
+      "Na podstawie tych informacji wykonawca może określić kolejne kroki i ustalić, czy potrzebne będą oględziny na miejscu.",
+    ],
   },
 ];
 
