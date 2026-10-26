@@ -199,50 +199,6 @@ export default function HomePage() {
 
         <ServiceAreaSection />
 
-        <section className="section section-contact" id="kontakt">
-          <div className="section-wrap contact-grid">
-            <div>
-              <p className="eyebrow">POROZMAWIAJMY</p>
-              <h2>Opowiedz nam o swoim dachu.</h2>
-              <p className="section-intro">
-                Zadzwoń lub napisz — chętnie odpowiemy na pytania dotyczące
-                malowania i mycia dachu.
-              </p>
-              <a className="button button-primary" href={businessPhone.href}>
-                Zadzwoń: {businessPhone.display} <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-            <div className="home-final-contact">
-              <div className="home-final-contact-row">
-                <span className="home-final-contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg>
-                </span>
-                <div>
-                  <span>ADRES E-MAIL</span>
-                  <a href="mailto:cleanworks.goraj@gmail.com">cleanworks.goraj@gmail.com</a>
-                </div>
-              </div>
-              <div className="home-final-contact-row">
-                <span className="home-final-contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
-                </span>
-                <div>
-                  <span>GODZINY KONTAKTU</span>
-                  <p>Poniedziałek–piątek, 7:00–18:00</p>
-                </div>
-              </div>
-              <div className="home-final-contact-row">
-                <span className="home-final-contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
-                </span>
-                <div>
-                  <span>OBSZAR DZIAŁANIA</span>
-                  <p>Łódź i okolice</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
     </main>
   );
 }

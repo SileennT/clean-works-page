@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { HomeLogoLink } from "@/components/home-logo-link";
 import { businessPhone, serviceAreaLocations, services } from "@/data/site";
 
 const facebookUrl = "https://www.facebook.com/p/CLEAN-WORKS-61557168899248/";
@@ -11,9 +11,12 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="section-wrap footer-main">
         <div className="footer-column footer-brand-column">
-          <Link className="brand brand-footer" href="/" aria-label="Clean Works — strona główna">
-            <Image className="brand-logo brand-logo-footer" src="/cleanworks-logo-transparent.png" alt="" width={517} height={270} />
-          </Link>
+          <HomeLogoLink
+            className="brand brand-footer"
+            imageClassName="brand-logo brand-logo-footer"
+            imageSrc="/cleanworks-logo-footer.png"
+            label="Clean Works — strona główna"
+          />
           <p>Mycie i malowanie dachów oraz czyszczenie i malowanie elewacji. Działamy w Łodzi i okolicach.</p>
           <div className="footer-contact-list">
             <a href={businessPhone.href}>
