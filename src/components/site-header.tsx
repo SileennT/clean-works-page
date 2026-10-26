@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { businessPhone } from "@/data/site";
 import Link from "next/link";
-import Image from "next/image";
+import { HomeLogoLink } from "@/components/home-logo-link";
 
 export function SiteHeader() {
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -36,9 +36,12 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <Link className="brand" href="/" aria-label="CleanWorks — strona główna">
-          <Image className="brand-logo" src="/cleanworks-logo-transparent.png" alt="" width={517} height={270} priority />
-        </Link>
+        <HomeLogoLink
+          className="brand"
+          imageClassName="brand-logo"
+          imageSrc="/cleanworks-logo-transparent.png"
+          label="CleanWorks — strona główna"
+        />
         <nav className="main-nav" aria-label="Nawigacja główna">
           <Link className="nav-home-link" href="/" onClick={closeMenu}>Strona główna</Link>
           <div className="nav-dropdown" ref={servicesRef}>
