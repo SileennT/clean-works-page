@@ -8,6 +8,18 @@ export const metadata: Metadata = {
   title: "CleanWorks | Malowanie i mycie dachów",
   description:
     "CleanWorks oferuje mycie i malowanie dachów oraz czyszczenie i malowanie elewacji. Skontaktuj się z nami, aby zapytać o bezpłatną wycenę.",
+  metadataBase: new URL("https://cleanworks.pl"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "CleanWorks | Malowanie i mycie dachów",
+    description:
+      "CleanWorks oferuje mycie i malowanie dachów oraz czyszczenie i malowanie elewacji. Skontaktuj się z nami, aby zapytać o bezpłatną wycenę.",
+    siteName: "CleanWorks",
+    locale: "pl_PL",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

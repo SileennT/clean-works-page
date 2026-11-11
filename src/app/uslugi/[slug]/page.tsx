@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
   return {
     title: service ? `${service.title} | CleanWorks` : "Usługa | CleanWorks",
     description: service?.description,
+    alternates: { canonical: `/uslugi/${slug}` },
   };
 }
 

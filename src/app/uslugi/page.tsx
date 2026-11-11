@@ -6,6 +6,7 @@ import { services } from "@/data/site";
 export const metadata: Metadata = {
   title: "Usługi | CleanWorks",
   description: "Sprawdź ofertę CleanWorks: mycie i malowanie dachów oraz czyszczenie i malowanie elewacji.",
+  alternates: { canonical: "/uslugi" },
 };
 
 export default function ServicesPage() {

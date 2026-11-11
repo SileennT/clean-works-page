@@ -7,6 +7,7 @@ import { businessPhone, services } from "@/data/site";
 export const metadata: Metadata = {
   title: "O firmie | CleanWorks",
   description: "Poznaj CleanWorks — mycie i malowanie dachów oraz czyszczenie i malowanie elewacji w Łodzi i okolicach.",
+  alternates: { canonical: "/o-firmie" },
 };
 
 export default function AboutPage() {

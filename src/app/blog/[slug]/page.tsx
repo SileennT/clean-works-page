@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   return {
     title: article ? `${article.title} | CleanWorks` : "Poradnik | CleanWorks",
     description: article?.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
   };
 }
 
