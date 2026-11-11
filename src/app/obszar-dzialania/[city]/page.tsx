@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
   return {
     title: `Mycie i malowanie dachów ${location.locative} | CleanWorks`,
     description: `CleanWorks oferuje mycie i malowanie dachów oraz czyszczenie i malowanie elewacji w ${location.locative} i okolicach. Zapytaj o dojazd i bezpłatną wycenę.`,
+    alternates: { canonical: `/obszar-dzialania/${city}` },
   };
 }
 

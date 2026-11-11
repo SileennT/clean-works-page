@@ -5,6 +5,7 @@ import { businessPhone } from "@/data/site";
 export const metadata: Metadata = {
   title: "Kontakt | CleanWorks",
   description: "Skontaktuj się z CleanWorks w sprawie mycia lub malowania dachu.",
+  alternates: { canonical: "/kontakt" },
 };
 
 export default function ContactPage() {

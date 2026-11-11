@@ -7,6 +7,7 @@ import { faqs, galleryItems } from "@/data/site";
 export const metadata: Metadata = {
   title: "Realizacje — Łódź i okolice | CleanWorks",
   description: "Mycie i malowanie dachów oraz elewacji. Zobacz wybrane realizacje CleanWorks i sprawdź obszar dojazdu w promieniu ok. 200 km od Łodzi.",
+  alternates: { canonical: "/realizacje" },
 };
 
 export default function ProjectsPage() {

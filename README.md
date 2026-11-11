@@ -103,7 +103,8 @@ src/
 - Zmień nazwę CleanWorks, opisy, usługi i dane w `src/data/site.ts` oraz komponentach.
 - Numer telefonu z przesłanej inspiracji jest ustawiony w `src/data/site.ts`; potwierdź go z klientem. Uzupełnij także e-mail, obszar działania, godziny i dane firmy.
 - Zastąp ilustracje i pola „Dodaj zdjęcie” prawdziwymi, zaakceptowanymi zdjęciami klienta. Najlepiej przygotować własne fotografie „przed i po”.
-- Zaktualizuj tytuł i opis SEO w `src/app/layout.tsx`; dodaj docelową politykę prywatności przed publikacją.
+- Sprawdź tytuły i opisy SEO w plikach `src/app/`; `src/app/robots.ts` i `src/app/sitemap.ts` wskazują wyszukiwarkom publiczne strony domeny `cleanworks.pl`.
+- Dodaj docelową politykę prywatności przed publikacją.
 - Zweryfikuj wszystkie obietnice marketingowe, dostępność usług i opinie — szablon nie zakłada niepotwierdzonych gwarancji ani referencji.
 - Formularz wysyła zgłoszenia przez Resend na `cleanworks.goraj@gmail.com`. Skonfiguruj Resend przed użyciem i publikacją, zgodnie z instrukcją poniżej.
 
@@ -122,7 +123,11 @@ Przed wdrożeniem kod powinien być w repozytorium GitHub, GitLab lub Bitbucket:
 3. Pozostaw wykryty framework **Next.js** oraz domyślne polecenia builda.
 4. W ustawieniach projektu dodaj zmienne wymagane do wysyłki formularza (opis poniżej), przynajmniej dla środowiska **Production**.
 5. Wybierz **Deploy**. Vercel zbuduje aplikację i udostępni jej adres pod domeną `vercel.app`.
-6. W **Project → Settings → Domains** dodaj domenę klienta. Skopiuj wskazane przez Vercel rekordy DNS do panelu rejestratora domeny; po propagacji Vercel skonfiguruje HTTPS.
+6. W **Project → Settings → Domains** dodaj `cleanworks.pl` i skonfiguruj dokładnie rekordy DNS wskazane przez Vercel. Ustaw `cleanworks.pl` jako domenę główną projektu, aby adres `vercel.app` nie był równoległym adresem kanonicznym. Po propagacji Vercel skonfiguruje HTTPS.
+7. Po wdrożeniu otwórz `https://cleanworks.pl/robots.txt` oraz `https://cleanworks.pl/sitemap.xml` i sprawdź, czy są dostępne.
+8. Dodaj domenę `cleanworks.pl` jako usługę typu **Domena** w [Google Search Console](https://search.google.com/search-console/), zweryfikuj własność rekordem DNS TXT podanym przez Google, a następnie zgłoś mapę witryny `https://cleanworks.pl/sitemap.xml`.
+
+Dodanie mapy witryny i zgłoszenie strony nie gwarantują indeksacji ani konkretnej pozycji w wynikach. Google samodzielnie decyduje, które strony i kiedy zaindeksować; po zgłoszeniu monitoruj status w Search Console.
 
 Po połączeniu repozytorium kolejne zmiany wypchnięte do gałęzi produkcyjnej będą automatycznie publikowane. Wdrożenia innych gałęzi mogą służyć jako podgląd przed publikacją. Szczegóły: [dokumentacja wdrażania Next.js na Vercel](https://vercel.com/docs/frameworks/full-stack/nextjs), [wdrożenia z Git](https://vercel.com/docs/git) i [własne domeny](https://vercel.com/docs/domains/working-with-domains).
 

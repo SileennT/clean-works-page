@@ -6,6 +6,7 @@ import { articles } from "@/data/site";
 export const metadata: Metadata = {
   title: "Poradnik | CleanWorks",
   description: "Wskazówki dotyczące pielęgnacji, czyszczenia i przygotowania dachów.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {
